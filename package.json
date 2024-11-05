@@ -5,13 +5,17 @@
   "scripts": {
     "dev": "next dev -H 196.1.1.154 -p 4000",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 4000",
     "lint": "next lint"
   },
   "dependencies": {
+    "@nextui-org/react": "^2.4.8",
+    "framer-motion": "^11.11.9",
+    "jsonwebtoken": "^9.0.2",
+    "next": "14.2.15",
+    "next-auth": "^4.24.8",
     "react": "^18",
-    "react-dom": "^18",
-    "next": "14.2.15"
+    "react-dom": "^18"
   },
   "devDependencies": {
     "postcss": "^8",

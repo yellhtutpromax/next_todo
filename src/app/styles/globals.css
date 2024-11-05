@@ -5,12 +5,16 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --theme-bg: #131321;
+  --blue-gray: #17182A;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --theme-bg: #131321;
+    --blue-gray: #17182A;
   }
 }
 
