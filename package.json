@@ -11,6 +11,7 @@
   "dependencies": {
     "@nextui-org/react": "^2.4.8",
     "framer-motion": "^11.11.9",
+    "jose": "^5.9.6",
     "jsonwebtoken": "^9.0.2",
     "next": "14.2.15",
     "next-auth": "^4.24.8",

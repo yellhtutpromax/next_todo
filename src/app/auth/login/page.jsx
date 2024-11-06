@@ -1,18 +1,18 @@
 "use client"; // Marking this component as a Client Component
 
-import {useEffect, useState} from "react";
-import { Button, Input } from "@nextui-org/react";
+import {useState} from "react";
+import {Button, Input, Spinner} from "@nextui-org/react";
 import { useRouter } from "next/navigation";
-import useLogIn from "@/app/hooks/auth/useLogIn";
+import useLogIn from "@/app/auth/login/actions";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
-    username: "yellhtut",
+    email: "yellhtut4@gmail.com",
     password: "admin123",
   });
   const router = useRouter();
-  const { login } = useLogIn();
-  const [error, setError] = useState(""); // State to hold error messages
+  const {login, setError, error, loading} = useLogIn();
+  // const [error, setError] = useState(""); // State to hold error messages
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -25,12 +25,12 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault() // Prevent the default form submission
     setError("");
-    if (!credentials.username || !credentials.password) {
+    if (!credentials.email || !credentials.password) {
       setError("Please fill the required credentials")
       return
     }
-    const result = await login(credentials.username, credentials.password)
-    console.table(result)
+    const result = await login(credentials.email, credentials.password)
+
     if (!result.error) {
       // Redirect to home or any other page on successful login
       setError("") // Update the error state
@@ -50,6 +50,7 @@ const Login = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-themeBg ">
+      <Spinner   label="Loading..." color="warning" />
       <div className="w-full max-w-md p-8 space-y-6 rounded shadow-2xl bg-themeSecondary border-3 border-slate-700">
         <div className="flex flex-col justify-center items-center py-5">
           <div className="text-2xl font-bold text-start text-white">Sign in to account</div>
@@ -60,11 +61,11 @@ const Login = () => {
             <Input
               isRequired
               type="text" // Use type "text" for username
-              name="username" // Add name attribute for handleChange to work correctly
+              name="email" // Add name attribute for handleChange to work correctly
               className="w-full"
               size="sm"
               label="Username"
-              value={credentials.username} // Accessing username from state
+              value={credentials.email} // Accessing username from state
               onChange={handleChange} // Use handleChange for input updates
               isInvalid={error}
               errorMessage={error}

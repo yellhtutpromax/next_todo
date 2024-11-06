@@ -1,9 +1,14 @@
 import React from 'react';
+import { verifySession } from '@/app/lib/dal'
 
-const Dashboard = (props) => (
-  <div>
-    <h1>This is login page ... </h1>
-  </div>
-);
+const Dashboard = async (props) => {
+  const session = await verifySession()
+  const userRole = session.role
+  return (
+    <>
+      <h1>This is dashboard page ... </h1>
+    </>
+  )
+}
 
 export default Dashboard;
